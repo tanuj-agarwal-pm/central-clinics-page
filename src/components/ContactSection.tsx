@@ -42,7 +42,7 @@ export const ContactSection = () => {
   return <section id="contact-form" className="py-16 md:py-24 px-4 bg-white dark:bg-slate-950">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-heading text-foreground mb-4">Experience Kerala - right in Indiranagar</h2>
+          <h2 className="text-3xl md:text-5xl font-heading text-foreground mb-4">Experience Kerala - right</h2>
           <p className="text-muted-foreground text-base md:text-lg">Holistic healing made convenient</p>
         </div>
 
@@ -94,7 +94,10 @@ export const ContactSection = () => {
                 <label htmlFor="clinic" className="block text-sm font-medium text-foreground mb-2">
                   Preferred Clinic
                 </label>
-                <Select value={formData.clinic} onValueChange={(value) => setFormData({ ...formData, clinic: value })}>
+                <Select value={formData.clinic} onValueChange={value => setFormData({
+                ...formData,
+                clinic: value
+              })}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a clinic" />
                   </SelectTrigger>
