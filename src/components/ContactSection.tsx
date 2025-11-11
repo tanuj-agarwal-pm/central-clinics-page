@@ -26,7 +26,7 @@ const clinicsByLocation: Record<string, string[]> = {
     "Mumbai Marol",
     "Pune Hadapsar"
   ],
-  "Chennai": ["Anna Nagar"],
+  "Chennai": ["Anna Nagar", "Poes Garden"],
   "Hyderabad": ["Somajiguda"],
   "Vishakhapatnam": ["Venkojipalem"],
   "Delhi": ["East of Kailash"],
