@@ -226,6 +226,13 @@ export const ClinicsSection = () => {
     locationMap[selectedLocation]?.includes(clinic.state)
   );
 
+  // Calculate clinic count for each location
+  const getClinicCount = (location: string) => {
+    return clinicsData.filter(clinic => 
+      locationMap[location]?.includes(clinic.state)
+    ).length;
+  };
+
   return (
     <section className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
@@ -246,6 +253,13 @@ export const ClinicsSection = () => {
                 onClick={() => setSelectedLocation(location)}
               >
                 {location}
+                <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs ${
+                  selectedLocation === location 
+                    ? "bg-white/20" 
+                    : "bg-muted"
+                }`}>
+                  {getClinicCount(location)}
+                </span>
               </Badge>
             ))}
           </div>
