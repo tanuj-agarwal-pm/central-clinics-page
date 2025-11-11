@@ -42,7 +42,7 @@ export const ContactSection = () => {
   return <section id="contact-form" className="py-16 md:py-24 px-4 bg-white dark:bg-slate-950">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-heading text-foreground mb-4">Experience Kerala - whe</h2>
+          <h2 className="text-3xl md:text-5xl font-heading text-foreground mb-4">Experience Kerala - whereve</h2>
           <p className="text-muted-foreground text-base md:text-lg">Holistic healing made convenient</p>
         </div>
 
