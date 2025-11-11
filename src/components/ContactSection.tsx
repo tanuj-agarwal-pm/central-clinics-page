@@ -43,7 +43,7 @@ export const ContactSection = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-heading text-foreground mb-4">​Start your journey towards holistic healing.</h2>
-          <p className="text-muted-foreground text-base md:text-lg">Request a callback</p>
+          <p className="text-muted-foreground text-base md:text-lg">Request a callback and book your consultation.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
