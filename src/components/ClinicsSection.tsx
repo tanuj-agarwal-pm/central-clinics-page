@@ -205,7 +205,6 @@ const clinicsData = [
 
 // Location mapping for filtering
 const locationMap: Record<string, string[]> = {
-  "All": [],
   "Bengaluru": ["Karnataka"],
   "Kerala": ["Kerala"],
   "Maharashtra": ["Maharashtra"],
@@ -221,11 +220,11 @@ const locationMap: Record<string, string[]> = {
 const locations = Object.keys(locationMap);
 
 export const ClinicsSection = () => {
-  const [selectedLocation, setSelectedLocation] = useState("All");
+  const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
-  const filteredClinics = selectedLocation === "All" 
-    ? clinicsData 
-    : clinicsData.filter(clinic => locationMap[selectedLocation]?.includes(clinic.state));
+  const filteredClinics = clinicsData.filter(clinic => 
+    locationMap[selectedLocation]?.includes(clinic.state)
+  );
 
   return (
     <section className="py-20 px-4 bg-muted/30">
@@ -243,7 +242,7 @@ export const ClinicsSection = () => {
               <Badge
                 key={location}
                 variant={selectedLocation === location ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2 text-sm hover:bg-primary/90 transition-colors"
+                className="cursor-pointer px-4 py-2 text-sm hover:bg-primary hover:text-white transition-colors"
                 onClick={() => setSelectedLocation(location)}
               >
                 {location}
