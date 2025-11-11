@@ -153,26 +153,37 @@ export const ContactSection = () => {
                 </Select>
               </div>
 
-              <div>
-                <label htmlFor="clinic" className="block text-sm font-medium text-foreground mb-2">
-                  Preferred Clinic
-                </label>
-                <Select value={formData.clinic} onValueChange={value => setFormData({
-                ...formData,
-                clinic: value
-              })}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a clinic" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-background z-50">
-                    {clinicsByLocation[formData.location]?.map((clinic) => (
-                      <SelectItem key={clinic} value={clinic}>
-                        {clinic}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {clinicsByLocation[formData.location]?.length > 1 ? (
+                <div>
+                  <label htmlFor="clinic" className="block text-sm font-medium text-foreground mb-2">
+                    Preferred Clinic
+                  </label>
+                  <Select value={formData.clinic} onValueChange={value => setFormData({
+                  ...formData,
+                  clinic: value
+                })}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select a clinic" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background z-50">
+                      {clinicsByLocation[formData.location]?.map((clinic) => (
+                        <SelectItem key={clinic} value={clinic}>
+                          {clinic}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : (
+                <div>
+                  <label htmlFor="clinic" className="block text-sm font-medium text-foreground mb-2">
+                    Clinic
+                  </label>
+                  <div className="w-full px-3 py-2 border border-input rounded-md bg-muted text-foreground">
+                    {formData.clinic}
+                  </div>
+                </div>
+              )}
 
               <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-accent">
                 <Calendar className="w-5 h-5 mr-2" />
