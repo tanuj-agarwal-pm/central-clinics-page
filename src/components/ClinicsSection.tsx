@@ -253,10 +253,10 @@ export const ClinicsSection = () => {
                 onClick={() => setSelectedLocation(location)}
               >
                 {location}
-                <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs ${
+                <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs font-medium ${
                   selectedLocation === location 
-                    ? "bg-white/20" 
-                    : "bg-muted"
+                    ? "bg-white/20 text-white" 
+                    : "bg-muted text-foreground hover:text-foreground"
                 }`}>
                   {getClinicCount(location)}
                 </span>
