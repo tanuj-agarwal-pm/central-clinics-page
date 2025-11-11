@@ -1,13 +1,7 @@
 import { useState } from "react";
-import { MapPin, Phone, Clock } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { MapPin, Phone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const clinicsData = [
   // Karnataka
@@ -209,14 +203,29 @@ const clinicsData = [
   },
 ];
 
-const states = ["All States", ...Array.from(new Set(clinicsData.map(c => c.state)))];
+// Location mapping for filtering
+const locationMap: Record<string, string[]> = {
+  "All": [],
+  "Bengaluru": ["Karnataka"],
+  "Kerala": ["Kerala"],
+  "Maharashtra": ["Maharashtra"],
+  "Chennai": ["Tamil Nadu"],
+  "Hyderabad": ["Telangana"],
+  "Vishakhapatnam": ["Andhra Pradesh"],
+  "Delhi": ["Delhi"],
+  "Amritsar": ["Punjab"],
+  "Haryana": ["Haryana"],
+  "Singapore": ["Singapore"],
+};
+
+const locations = Object.keys(locationMap);
 
 export const ClinicsSection = () => {
-  const [selectedState, setSelectedState] = useState("All States");
+  const [selectedLocation, setSelectedLocation] = useState("All");
 
-  const filteredClinics = selectedState === "All States" 
+  const filteredClinics = selectedLocation === "All" 
     ? clinicsData 
-    : clinicsData.filter(clinic => clinic.state === selectedState);
+    : clinicsData.filter(clinic => locationMap[selectedLocation]?.includes(clinic.state));
 
   return (
     <section className="py-20 px-4 bg-muted/30">
@@ -229,19 +238,17 @@ export const ClinicsSection = () => {
             Find a location near you
           </p>
           
-          <div className="flex justify-center">
-            <Select value={selectedState} onValueChange={setSelectedState}>
-              <SelectTrigger className="w-[280px]">
-                <SelectValue placeholder="Select a state" />
-              </SelectTrigger>
-              <SelectContent>
-                {states.map((state) => (
-                  <SelectItem key={state} value={state}>
-                    {state}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {locations.map((location) => (
+              <Badge
+                key={location}
+                variant={selectedLocation === location ? "default" : "outline"}
+                className="cursor-pointer px-4 py-2 text-sm hover:bg-primary/90 transition-colors"
+                onClick={() => setSelectedLocation(location)}
+              >
+                {location}
+              </Badge>
+            ))}
           </div>
         </div>
 
