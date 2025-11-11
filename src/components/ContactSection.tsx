@@ -4,12 +4,46 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+// Clinic data by location
+const clinicsByLocation: Record<string, string[]> = {
+  "Bengaluru": [
+    "Indiranagar, 12th Main Road",
+    "HSR Layout, Sector 7",
+    "Jayanagar, 4th Block",
+    "Koramangala, 4th Block",
+    "Sarjapur",
+    "Shivaji Nagar",
+    "Whitefield"
+  ],
+  "Kerala": [
+    "Ernakulam Alangad",
+    "Ernakulam Edapally",
+    "Ernakulam Pallimukku",
+    "Kochi Aluva",
+    "Thiruvananthapuram Kowdiar"
+  ],
+  "Maharashtra": [
+    "Mumbai Marol",
+    "Pune Hadapsar"
+  ],
+  "Chennai": ["Anna Nagar"],
+  "Hyderabad": ["Somajiguda"],
+  "Vishakhapatnam": ["Venkojipalem"],
+  "Delhi": ["East of Kailash"],
+  "Amritsar": ["Basant Avenue"],
+  "Panipat": ["Model Town"],
+  "Singapore": ["Serangoon Rd", "Tessensohn Rd"]
+};
+
+const locations = Object.keys(clinicsByLocation);
+
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     date: "",
     time: "",
+    location: "Bengaluru",
     clinic: "Indiranagar, 12th Main Road"
   });
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,9 +64,20 @@ export const ContactSection = () => {
       phone: "",
       date: "",
       time: "",
+      location: "Bengaluru",
       clinic: "Indiranagar, 12th Main Road"
     });
   };
+  
+  const handleLocationChange = (location: string) => {
+    const clinicsInLocation = clinicsByLocation[location];
+    setFormData({
+      ...formData,
+      location,
+      clinic: clinicsInLocation[0] // Set first clinic as default
+    });
+  };
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -91,6 +136,24 @@ export const ContactSection = () => {
               </div>
 
               <div>
+                <label htmlFor="location" className="block text-sm font-medium text-foreground mb-2">
+                  Location *
+                </label>
+                <Select value={formData.location} onValueChange={handleLocationChange}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select location" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-50">
+                    {locations.map((location) => (
+                      <SelectItem key={location} value={location}>
+                        {location}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
                 <label htmlFor="clinic" className="block text-sm font-medium text-foreground mb-2">
                   Preferred Clinic
                 </label>
@@ -101,14 +164,12 @@ export const ContactSection = () => {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a clinic" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="HSR Layout, Sector 7">HSR Layout, Sector 7</SelectItem>
-                    <SelectItem value="Indiranagar, 12th Main Road">Indiranagar, 12th Main Road</SelectItem>
-                    <SelectItem value="Jayanagar, 4th Block">Jayanagar, 4th Block</SelectItem>
-                    <SelectItem value="Koramangala, 4th Block">Koramangala, 4th Block</SelectItem>
-                    <SelectItem value="Sarjapur">Sarjapur</SelectItem>
-                    <SelectItem value="Shivaji Nagar">Shivaji Nagar</SelectItem>
-                    <SelectItem value="Whitefield">Whitefield</SelectItem>
+                  <SelectContent className="bg-background z-50">
+                    {clinicsByLocation[formData.location]?.map((clinic) => (
+                      <SelectItem key={clinic} value={clinic}>
+                        {clinic}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
