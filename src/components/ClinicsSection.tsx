@@ -238,7 +238,7 @@ export const ClinicsSection = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Our Clinics
+            Experience Kerala - wherever you are.
           </h2>
           <p className="text-muted-foreground text-lg mb-8">
             Find a location near you
