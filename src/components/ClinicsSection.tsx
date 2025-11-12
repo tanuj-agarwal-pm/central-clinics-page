@@ -162,10 +162,10 @@ const clinicsData = [
   },
   {
     id: 20,
-    name: "Kelara Ayurveda Sukayur Vaidiyasalai",
+    name: "Chennai Poes Garden Clinic",
     state: "Tamil Nadu",
     address: "15/A, 3rd Floor, Rampratap Apartments, Near Bashyam Apartments, Poes Garden, Chennai, Tamil Nadu - 600086",
-    phone: "+91 44 4855 5000",
+    phone: "+91 80 1569 4651",
     mapsUrl: "https://maps.app.goo.gl/K16A89MPjWN9wuSbA",
   },
   {
@@ -235,7 +235,7 @@ export const ClinicsSection = () => {
   const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
   // Multi-city locations that need name-based filtering
-  const multiCityLocations = ["Bengaluru", "Thiruvananthapuram", "Ernakulam", "Kochi", "Mumbai", "Pune", "Chennai"];
+  const multiCityLocations = ["Bengaluru", "Ernakulam", "Mumbai", "Chennai", "Singapore"];
   
   const filteredClinics = clinicsData.filter(clinic => {
     const matchesState = locationMap[selectedLocation]?.includes(clinic.state);
