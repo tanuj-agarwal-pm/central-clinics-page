@@ -119,6 +119,14 @@ const clinicsData = [
     phone: "+91 20 2697 4242",
     mapsUrl: "https://maps.app.goo.gl/RPwn6dBKRuKaPupZ6",
   },
+  {
+    id: 25,
+    name: "Mumbai Kalyan Clinic",
+    state: "Maharashtra",
+    address: "Om Ananat Krupa Co op Housing Society, Agra Rd, Ghodekhot Aali, Kalyan West, Mumbai, Kalyan, Maharashtra - 421301",
+    phone: "+91 9888988702",
+    mapsUrl: "https://maps.app.goo.gl/4xVJgGSpK7dFjCE68",
+  },
   // Rest of India
   {
     id: 16,
