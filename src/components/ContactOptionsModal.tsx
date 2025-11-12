@@ -32,11 +32,6 @@ const contactOptions = [
     label: "WhatsApp Us",
     action: () => window.open("https://wa.me/1234567890", "_blank"),
   },
-  {
-    icon: MapPin,
-    label: "Get Directions",
-    action: () => window.open("https://maps.google.com", "_blank"),
-  },
 ];
 
 const ContactOptionsContent = () => (
