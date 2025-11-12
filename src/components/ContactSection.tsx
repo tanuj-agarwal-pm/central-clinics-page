@@ -224,7 +224,7 @@ export const ContactSection = () => {
                   <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
                     <SelectTrigger className={cn("w-full justify-start", !formData.time && "text-muted-foreground")} hideIcon>
                       <Clock className="mr-2 h-4 w-4" />
-                      <SelectValue placeholder="Select time" />
+                      <SelectValue placeholder="Pick a time" />
                     </SelectTrigger>
                     <SelectContent className="bg-background z-50">
                       {timeSlots.map((slot) => (
