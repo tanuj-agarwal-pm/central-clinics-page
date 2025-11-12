@@ -206,17 +206,17 @@ const clinicsData = [
 // Location mapping for filtering (city -> state mapping)
 const locationMap: Record<string, string[]> = {
   "Bengaluru": ["Karnataka"],
-  "Thiruvananthapuram": ["Kerala"],
+  "Chennai": ["Tamil Nadu"],
+  "Delhi": ["Delhi"],
   "Ernakulam": ["Kerala"],
+  "Hyderabad": ["Telangana"],
   "Kochi": ["Kerala"],
   "Mumbai": ["Maharashtra"],
-  "Pune": ["Maharashtra"],
-  "Chennai": ["Tamil Nadu"],
-  "Hyderabad": ["Telangana"],
-  "Vishakhapatnam": ["Andhra Pradesh"],
-  "Delhi": ["Delhi"],
-  "Amritsar": ["Punjab"],
   "Panipat": ["Haryana"],
+  "Pune": ["Maharashtra"],
+  "Thiruvananthapuram": ["Kerala"],
+  "Vishakhapatnam": ["Andhra Pradesh"],
+  "Amritsar": ["Punjab"],
   "Singapore": ["Singapore"],
 };
 
