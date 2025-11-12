@@ -163,7 +163,7 @@ export const ContactSection = () => {
                 </label>
                 <div className="flex gap-2">
                   <Select value={formData.countryCode} onValueChange={(value) => setFormData({ ...formData, countryCode: value, phone: "" })}>
-                    <SelectTrigger className="w-[140px]">
+                    <SelectTrigger className="w-[110px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background z-50">
