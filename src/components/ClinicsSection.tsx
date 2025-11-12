@@ -222,6 +222,15 @@ const locationMap: Record<string, string[]> = {
 
 const locations = Object.keys(locationMap);
 
+// Helper function to clean up clinic names for display
+const getCleanClinicName = (clinicName: string) => {
+  // Remove city prefixes and "Clinic" suffix
+  return clinicName
+    .replace(/^(Bengaluru|Chennai|Ernakulam|Kochi|Thiruvananthapuram|Mumbai|Pune|New Delhi|Hyderabad|Vizag|Ayurvedamrut Wellness Centre|Ayurniwas - Panipat|Kelara Ayurveda Sukayur Vaidiyasalai)\s*/i, '')
+    .replace(/\s*Clinic\s*$/i, '')
+    .trim();
+};
+
 export const ClinicsSection = () => {
   const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
@@ -293,7 +302,7 @@ export const ClinicsSection = () => {
           {filteredClinics.map((clinic) => (
             <Card key={clinic.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle className="text-xl">{clinic.name}</CardTitle>
+                <CardTitle className="text-xl">{getCleanClinicName(clinic.name)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-start gap-2 text-sm">
