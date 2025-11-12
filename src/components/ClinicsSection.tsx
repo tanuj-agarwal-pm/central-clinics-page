@@ -235,7 +235,7 @@ export const ClinicsSection = () => {
   const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
   // Multi-city locations that need name-based filtering
-  const multiCityLocations = ["Bengaluru", "Ernakulam", "Mumbai", "Chennai", "Singapore"];
+  const multiCityLocations = ["Bengaluru", "Ernakulam", "Kochi", "Thiruvananthapuram", "Mumbai", "Chennai", "Singapore"];
   
   const filteredClinics = clinicsData.filter(clinic => {
     const matchesState = locationMap[selectedLocation]?.includes(clinic.state);
