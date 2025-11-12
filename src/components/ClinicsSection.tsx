@@ -278,23 +278,30 @@ export const ClinicsSection = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {locations.map((location) => (
-              <Badge
-                key={location}
-                variant={selectedLocation === location ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2 text-sm hover:bg-primary hover:text-white transition-colors"
-                onClick={() => setSelectedLocation(location)}
-              >
-                {location}
-                <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs font-medium ${
-                  selectedLocation === location 
-                    ? "bg-white/20 text-white" 
-                    : "bg-muted text-foreground hover:text-foreground"
-                }`}>
-                  {getClinicCount(location)}
-                </span>
-              </Badge>
-            ))}
+            {locations.map((location) => {
+              const clinicCount = getClinicCount(location);
+              const showCount = clinicCount > 1;
+              
+              return (
+                <Badge
+                  key={location}
+                  variant={selectedLocation === location ? "default" : "outline"}
+                  className="cursor-pointer px-4 py-2 text-sm hover:bg-primary hover:text-white transition-colors"
+                  onClick={() => setSelectedLocation(location)}
+                >
+                  {location}
+                  {showCount && (
+                    <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs font-medium ${
+                      selectedLocation === location 
+                        ? "bg-white/20 text-white" 
+                        : "bg-muted text-foreground hover:text-foreground"
+                    }`}>
+                      {clinicCount}
+                    </span>
+                  )}
+                </Badge>
+              );
+            })}
           </div>
         </div>
 
