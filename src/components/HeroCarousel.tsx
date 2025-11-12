@@ -67,9 +67,7 @@ export const HeroCarousel = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary-foreground" />
-              <span className="text-primary-foreground text-sm md:text-base font-medium">
-                Healing Mind, Body, and Soul
-              </span>
+              <span className="text-primary-foreground text-sm md:text-base font-medium">Healing Mind, Body and Soul</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary-foreground" />
