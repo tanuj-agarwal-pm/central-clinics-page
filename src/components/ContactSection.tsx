@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -222,7 +222,8 @@ export const ContactSection = () => {
                     Preferred Time
                   </label>
                   <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className={cn("w-full justify-start", !formData.time && "text-muted-foreground")} hideIcon>
+                      <Clock className="mr-2 h-4 w-4" />
                       <SelectValue placeholder="Select time" />
                     </SelectTrigger>
                     <SelectContent className="bg-background z-50">
