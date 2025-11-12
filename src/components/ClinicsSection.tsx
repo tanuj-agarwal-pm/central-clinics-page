@@ -203,17 +203,20 @@ const clinicsData = [
   },
 ];
 
-// Location mapping for filtering
+// Location mapping for filtering (city -> state mapping)
 const locationMap: Record<string, string[]> = {
   "Bengaluru": ["Karnataka"],
-  "Kerala": ["Kerala"],
-  "Maharashtra": ["Maharashtra"],
+  "Thiruvananthapuram": ["Kerala"],
+  "Ernakulam": ["Kerala"],
+  "Kochi": ["Kerala"],
+  "Mumbai": ["Maharashtra"],
+  "Pune": ["Maharashtra"],
   "Chennai": ["Tamil Nadu"],
   "Hyderabad": ["Telangana"],
   "Vishakhapatnam": ["Andhra Pradesh"],
   "Delhi": ["Delhi"],
   "Amritsar": ["Punjab"],
-  "Haryana": ["Haryana"],
+  "Panipat": ["Haryana"],
   "Singapore": ["Singapore"],
 };
 
@@ -222,15 +225,19 @@ const locations = Object.keys(locationMap);
 export const ClinicsSection = () => {
   const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
-  const filteredClinics = clinicsData.filter(clinic => 
-    locationMap[selectedLocation]?.includes(clinic.state)
-  );
+  const filteredClinics = clinicsData.filter(clinic => {
+    const matchesState = locationMap[selectedLocation]?.includes(clinic.state);
+    const matchesCity = clinic.name.startsWith(selectedLocation);
+    return matchesState && matchesCity;
+  });
 
   // Calculate clinic count for each location
   const getClinicCount = (location: string) => {
-    return clinicsData.filter(clinic => 
-      locationMap[location]?.includes(clinic.state)
-    ).length;
+    return clinicsData.filter(clinic => {
+      const matchesState = locationMap[location]?.includes(clinic.state);
+      const matchesCity = clinic.name.startsWith(location);
+      return matchesState && matchesCity;
+    }).length;
   };
 
   return (
