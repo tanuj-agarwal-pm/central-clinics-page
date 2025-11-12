@@ -225,18 +225,35 @@ const locations = Object.keys(locationMap);
 export const ClinicsSection = () => {
   const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
 
+  // Multi-city locations that need name-based filtering
+  const multiCityLocations = ["Bengaluru", "Thiruvananthapuram", "Ernakulam", "Kochi", "Mumbai", "Pune", "Chennai"];
+  
   const filteredClinics = clinicsData.filter(clinic => {
     const matchesState = locationMap[selectedLocation]?.includes(clinic.state);
-    const matchesCity = clinic.name.startsWith(selectedLocation);
-    return matchesState && matchesCity;
+    
+    // For multi-city locations, also check if clinic name contains the city
+    if (multiCityLocations.includes(selectedLocation)) {
+      const matchesCity = clinic.name.includes(selectedLocation);
+      return matchesState && matchesCity;
+    }
+    
+    // For single-city locations, just check state
+    return matchesState;
   });
 
   // Calculate clinic count for each location
   const getClinicCount = (location: string) => {
     return clinicsData.filter(clinic => {
       const matchesState = locationMap[location]?.includes(clinic.state);
-      const matchesCity = clinic.name.startsWith(location);
-      return matchesState && matchesCity;
+      
+      // For multi-city locations, also check if clinic name contains the city
+      if (multiCityLocations.includes(location)) {
+        const matchesCity = clinic.name.includes(location);
+        return matchesState && matchesCity;
+      }
+      
+      // For single-city locations, just check state
+      return matchesState;
     }).length;
   };
 
