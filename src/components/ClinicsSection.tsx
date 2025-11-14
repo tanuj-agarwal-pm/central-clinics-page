@@ -384,8 +384,9 @@ export const ClinicsSection = () => {
           </p>
         </div>
 
-        {/* Desktop: Three-column layout */}
-        <div className="hidden lg:grid lg:grid-cols-[280px_320px_1fr] gap-6 min-h-[700px]">
+        {/* Three-column layout: Cities | Clinic Names | Clinic Details */}
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[280px_320px_1fr] gap-6 min-h-[700px]">
+          {/* LEFT: City Selector */}
           <div className="border rounded-lg p-4 bg-card">
             <CitySelector
               cities={locations}
@@ -395,7 +396,8 @@ export const ClinicsSection = () => {
             />
           </div>
 
-          <div className="border rounded-lg p-4 bg-card">
+          {/* CENTER: Clinic Names Only */}
+          <div className="border rounded-lg p-4 bg-card hidden md:block">
             <ClinicList
               clinics={filteredClinics}
               activeClinicIndex={activeClinicIndex}
@@ -405,38 +407,8 @@ export const ClinicsSection = () => {
             />
           </div>
 
-          <div className="border rounded-lg p-6 bg-card">
-            <ClinicCarousel
-              clinics={filteredClinics}
-              activeIndex={activeClinicIndex}
-              onIndexChange={setActiveClinicIndex}
-              getCleanClinicName={getCleanClinicName}
-            />
-          </div>
-        </div>
-
-        {/* Mobile/Tablet: Stacked layout */}
-        <div className="lg:hidden space-y-6">
-          <div className="border rounded-lg p-4 bg-card">
-            <CitySelector
-              cities={locations}
-              selectedCity={selectedCity}
-              onCitySelect={handleCitySelect}
-              getClinicCount={getClinicCount}
-            />
-          </div>
-
-          <div className="border rounded-lg p-4 bg-card">
-            <ClinicList
-              clinics={filteredClinics}
-              activeClinicIndex={activeClinicIndex}
-              onClinicSelect={handleClinicSelect}
-              selectedCity={selectedCity}
-              getCleanClinicName={getCleanClinicName}
-            />
-          </div>
-
-          <div className="border rounded-lg p-6 bg-card">
+          {/* RIGHT: Clinic Details with Carousel */}
+          <div className="border rounded-lg p-6 bg-card md:col-span-1">
             <ClinicCarousel
               clinics={filteredClinics}
               activeIndex={activeClinicIndex}
