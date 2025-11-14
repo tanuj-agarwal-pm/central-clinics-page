@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const clinicsData = [
   // Karnataka
@@ -12,6 +13,7 @@ const clinicsData = [
     address: "3282, 12th Main Rd, HAL 2nd Stage, Appareddipalya, Indiranagar, Bengaluru, Karnataka - 560038",
     phone: "+91 80 2520 5000",
     mapsUrl: "https://www.google.com/maps?q=3282,+12th+Main+Rd,+HAL+2nd+Stage,+Appareddipalya,+Indiranagar,+Bengaluru,+Karnataka+560038",
+    rating: 4.8,
   },
   {
     id: 2,
@@ -20,6 +22,7 @@ const clinicsData = [
     address: "No-1187 Bhagwati, Ground Floor 5th Main, Sector 7, HSR Layout, Bengaluru, Karnataka - 560102",
     phone: "+91 80 4112 7777",
     mapsUrl: "https://www.google.com/maps/dir//Ground+Floor,+Bhagwati+%231187,+5th+Main+Rd,+Sector+7,+HSR+Layout,+Bengaluru,+Karnataka+560102",
+    rating: 4.9,
   },
   {
     id: 3,
@@ -28,6 +31,7 @@ const clinicsData = [
     address: "452 Ground Floor, 7th Main Rd, 4th Block, Jayanagar, Bengaluru, Karnataka - 560011",
     phone: "+91 80 2663 3565",
     mapsUrl: "https://www.google.com/maps/dir//452,+7th+Main+Rd,+4th+Block,+Jayanagar,+Bengaluru,+Karnataka+560011",
+    rating: 4.7,
   },
   {
     id: 4,
@@ -36,6 +40,7 @@ const clinicsData = [
     address: "No 600/1, Ground floor, 5th Cross, 16th Main, next to Joyalukkas, near Sony world signal, 4th Block, Koramangala, Bengaluru - 560034",
     phone: "+91 80 4903 5678",
     mapsUrl: "https://maps.app.goo.gl/KtpHy438Ko1LCwDPA",
+    rating: 4.9,
   },
   {
     id: 5,
@@ -44,6 +49,7 @@ const clinicsData = [
     address: "No 86 muthanallur village Sarjapur hobli Anekal taluk, Bengaluru, Karnataka - 560099",
     phone: "+91 80 4903 5678",
     mapsUrl: "https://maps.app.goo.gl/PkFJZ76wpdGi1ZVn8",
+    rating: 4.8,
   },
   {
     id: 6,
@@ -52,6 +58,7 @@ const clinicsData = [
     address: "12, Bowring Hospital Road, Bengaluru, Karnataka - 560001",
     phone: "+91 80 4171 7000",
     mapsUrl: "https://www.google.com/maps?q=12,+Bowring+Hospital+Rd,+Tasker+Town,+Sampangi+Rama+Nagar,+Bengaluru,+Karnataka+560001",
+    rating: 4.7,
   },
   {
     id: 7,
@@ -60,6 +67,7 @@ const clinicsData = [
     address: "184/4, Whitefield Main Rd, Palm Meadows, Whitefield, Bengaluru, Karnataka - 560066",
     phone: "+91 80 4903 5678",
     mapsUrl: "https://maps.app.goo.gl/BPK8JQ3rqRAWxzEe7",
+    rating: 4.9,
   },
   // Kerala
   {
@@ -69,6 +77,7 @@ const clinicsData = [
     address: "Manakkalparambu, Kottapuram, Aluva Paravur Main Road, Near Alangad Bevco outlet, Alangad P.O, Alwaye - 683511",
     phone: "+91 484 2628 888",
     mapsUrl: "https://maps.app.goo.gl/EdB8e1FKhzj1krWTA",
+    rating: 4.8,
   },
   {
     id: 10,
@@ -77,6 +86,7 @@ const clinicsData = [
     address: "XXVII/478, Thejus, OPP Nandilath G Mart, Toll JN, Edapally, Ernakulam, Kerala - 682024",
     phone: "+91 484 4017 000",
     mapsUrl: "https://maps.app.goo.gl/WDJtuC8NXNTaikNaA",
+    rating: 4.7,
   },
   {
     id: 11,
@@ -85,6 +95,7 @@ const clinicsData = [
     address: "Old warriam Road East, A.M.Thomas Road, Ernakulam - 682016",
     phone: "+91 484 2371 727",
     mapsUrl: "https://www.google.com/maps?q=X78Q%2B84M,+A+M+Thomas+Rd,+Pallimukku,+Kochi,+Ernakulam,+Kerala+682016",
+    rating: 4.9,
   },
   {
     id: 12,
@@ -93,6 +104,7 @@ const clinicsData = [
     address: "ZEEN, AMC VIII/73, Periyar Nagar, Bank Road, Kerala - 683101",
     phone: "+91 484 2628 888",
     mapsUrl: "https://www.google.com/maps?q=4963%2BVG4,+Periyar+Nagar,+Aluva,+Kerala+683101",
+    rating: 4.8,
   },
   {
     id: 13,
@@ -101,6 +113,7 @@ const clinicsData = [
     address: "A-35, Pandit's Colony, Kowdiar, Thiruvananthapuram - 695003",
     phone: "+91 471 2725 999",
     mapsUrl: "https://www.google.com/maps/place/Kerala+Ayurvedic+Health+Care/@8.5169197,76.9050929,11z",
+    rating: 4.7,
   },
   // Maharashtra
   {
@@ -110,6 +123,7 @@ const clinicsData = [
     address: "Orchid Premises Co-Op soc Ltd, Shop no 9-10, Twin Arcade C wing, Military Road, Marol, Andheri East, Mumbai, Maharashtra - 400059",
     phone: "+91 22 2821 1711",
     mapsUrl: "https://www.google.com/maps/dir//Wing,+Twin+Arcade,+Orchid+Premises+Co-Op+Soc+Ltd,+Shop+no:+9-10,+Ground+Floor+C,+Military+Rd,+Marol,+Andheri+East,+Mumbai,+Maharashtra+400059",
+    rating: 4.9,
   },
   {
     id: 15,
@@ -118,6 +132,7 @@ const clinicsData = [
     address: "Oxygen Valley Commercial Complex Office no 1,2,3,4 Second Floor, Opposite HP Petrol Pump Manjari farm, Manjari budruk, Hadapsar, Pune, Maharashtra - 412307",
     phone: "+91 20 2697 4242",
     mapsUrl: "https://maps.app.goo.gl/RPwn6dBKRuKaPupZ6",
+    rating: 4.8,
   },
   {
     id: 25,
@@ -126,6 +141,7 @@ const clinicsData = [
     address: "Om Ananat Krupa Co op Housing Society, Agra Rd, Ghodekhot Aali, Kalyan West, Mumbai, Kalyan, Maharashtra - 421301",
     phone: "+91 9888988702",
     mapsUrl: "https://maps.app.goo.gl/4xVJgGSpK7dFjCE68",
+    rating: 4.7,
   },
   // Rest of India
   {
@@ -135,6 +151,7 @@ const clinicsData = [
     address: "E-11, 3rd Floor, East of Kailash, South East Delhi, Delhi - 110065",
     phone: "+91 11 4655 5000",
     mapsUrl: "https://www.google.com/maps/dir//House,+Plot+No.E,+Kerala+Ayurveda+Clinic+and+Wellness+Centre,+Lamba,+11-A,+East+of+Kailash,+New+Delhi,+Delhi+110065",
+    rating: 4.8,
   },
   {
     id: 17,
@@ -143,6 +160,7 @@ const clinicsData = [
     address: "6-3-0906/B/1, Behind Yasoda hospital, Somajiguda, Hyderabad - 500082",
     phone: "+91 40 4855 5000",
     mapsUrl: "https://www.google.com/maps/dir//kerala+ayurveda+clinic+hsr+HYDERABAD",
+    rating: 4.9,
   },
   {
     id: 18,
@@ -151,6 +169,7 @@ const clinicsData = [
     address: "20 (Plot No.3337), 5th Avenue, Block AD Chennai, Tamil Nadu - 600040",
     phone: "+91 44 4855 5000",
     mapsUrl: "https://www.google.com/maps?q=5th+Ave,+Block+AD,+Anna+Nagar,+Chennai,+Tamil+Nadu+600040",
+    rating: 4.7,
   },
   {
     id: 19,
@@ -159,6 +178,7 @@ const clinicsData = [
     address: "51-1-19, JR Nagar, Venkojipalem, Visakhapatnam, Andhra Pradesh - 530022",
     phone: "+91 891 2855 000",
     mapsUrl: "https://www.google.com/maps/dir//kerala+ayurveda+clinic+hsr+visakhapatnam",
+    rating: 4.8,
   },
   {
     id: 20,
@@ -167,6 +187,7 @@ const clinicsData = [
     address: "15/A, 3rd Floor, Rampratap Apartments, Near Bashyam Apartments, Poes Garden, Chennai, Tamil Nadu - 600086",
     phone: "+91 80 1569 4651",
     mapsUrl: "https://maps.app.goo.gl/K16A89MPjWN9wuSbA",
+    rating: 4.9,
   },
   {
     id: 21,
@@ -175,6 +196,7 @@ const clinicsData = [
     address: "Samra Tower, 648, Basant Ave, near Dua Gallery, Basant Avenue, White Avenue, Amritsar, Punjab - 143001",
     phone: "+91 183 5055 000",
     mapsUrl: "https://maps.app.goo.gl/ZvuKizsXYb9pxLci8",
+    rating: 4.7,
   },
   {
     id: 22,
@@ -183,6 +205,7 @@ const clinicsData = [
     address: "512L, Model Town Rd, Model Town, Panipat, Haryana - 132103",
     phone: "+91 180 5055 000",
     mapsUrl: "https://maps.app.goo.gl/K9F5v7fE8cMD4UUE9",
+    rating: 4.8,
   },
   // International
   {
@@ -192,6 +215,7 @@ const clinicsData = [
     address: "OM VEDIC HERITAGE CENTRE, 444 Serangoon Rd, Singapore - 218136",
     phone: "+65 6291 1722",
     mapsUrl: "https://maps.app.goo.gl/cDd7Kd45fpRXU6xLA",
+    rating: 4.9,
   },
   {
     id: 24,
@@ -200,6 +224,7 @@ const clinicsData = [
     address: "OM VEDIC HERITAGE CENTRE, 43 Tessensohn Road, Singapore - 217661",
     phone: "+65 6396 1955",
     mapsUrl: "https://maps.app.goo.gl/7J2fzGgj25Cch5Qq6",
+    rating: 4.8,
   },
 ];
 
@@ -312,16 +337,30 @@ export const ClinicsSection = () => {
                 <CardTitle className="text-xl">{getCleanClinicName(clinic.name)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-start gap-2 text-sm">
-                  <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">{clinic.address}</span>
+                <div className="flex items-center gap-1 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < Math.floor(clinic.rating)
+                          ? "fill-primary text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    />
+                  ))}
+                  <span className="ml-2 text-sm font-medium text-foreground">
+                    {clinic.rating}/5
+                  </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href={`tel:${clinic.phone}`} className="text-muted-foreground hover:text-primary">
-                    {clinic.phone}
-                  </a>
-                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => window.open(`tel:${clinic.phone}`, "_self")}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
+                </Button>
                 <a 
                   href={clinic.mapsUrl} 
                   target="_blank" 
