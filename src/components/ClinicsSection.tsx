@@ -436,7 +436,7 @@ export const ClinicsSection = () => {
   };
 
   // Doctor Card Component
-  const DoctorCard = ({ doctor, clinic }: { doctor: Doctor; clinic: Clinic }) => {
+  const DoctorCard = ({ doctor }: { doctor: Doctor }) => {
     return (
       <Card className="overflow-hidden">
         <div className="flex gap-4 p-4">
@@ -452,45 +452,6 @@ export const ClinicsSection = () => {
           <div className="flex-grow">
             <h4 className="font-semibold text-lg">{doctor.name}</h4>
             <p className="text-sm text-muted-foreground">{doctor.specialty}</p>
-
-            {/* Action Icons */}
-            <div className="flex gap-3 mt-3">
-              {/* Call Icon */}
-              <Button
-                size="sm"
-                variant="outline"
-                asChild
-                className="flex items-center gap-2"
-              >
-                <a href={`tel:${clinic.phone}`}>
-                  <Phone className="w-4 h-4" />
-                </a>
-              </Button>
-
-              {/* Map Icon */}
-              <Button
-                size="sm"
-                variant="outline"
-                asChild
-                className="flex items-center gap-2"
-              >
-                <a href={clinic.mapsUrl} target="_blank" rel="noopener noreferrer">
-                  <MapPin className="w-4 h-4" />
-                </a>
-              </Button>
-
-              {/* Know More Icon */}
-              <Button
-                size="sm"
-                variant="outline"
-                asChild
-                className="flex items-center gap-2"
-              >
-                <a href="https://specific-clinics-page.lovable.app/" target="_blank" rel="noopener noreferrer">
-                  <Info className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
           </div>
         </div>
       </Card>
@@ -562,15 +523,58 @@ export const ClinicsSection = () => {
           {/* RIGHT COLUMN - Doctor Cards */}
           <div>
             <h3 className="text-sm sm:text-base lg:text-xl font-semibold mb-2 sm:mb-4">Our Doctors</h3>
-            <div className="space-y-4">
+            <div className="space-y-4 mb-6">
               {filteredClinics[activeClinicIndex]?.doctors.map((doctor) => (
                 <DoctorCard
                   key={doctor.id}
                   doctor={doctor}
-                  clinic={filteredClinics[activeClinicIndex]}
                 />
               ))}
             </div>
+
+            {/* Clinic Action Icons */}
+            <Card className="p-4">
+              <div className="flex gap-3 justify-center">
+                {/* Call Icon */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  asChild
+                  className="flex items-center gap-2"
+                >
+                  <a href={`tel:${filteredClinics[activeClinicIndex]?.phone}`}>
+                    <Phone className="w-4 h-4" />
+                    <span className="hidden sm:inline">Call</span>
+                  </a>
+                </Button>
+
+                {/* Map Icon */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  asChild
+                  className="flex items-center gap-2"
+                >
+                  <a href={filteredClinics[activeClinicIndex]?.mapsUrl} target="_blank" rel="noopener noreferrer">
+                    <MapPin className="w-4 h-4" />
+                    <span className="hidden sm:inline">Directions</span>
+                  </a>
+                </Button>
+
+                {/* Know More Icon */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  asChild
+                  className="flex items-center gap-2"
+                >
+                  <a href="https://specific-clinics-page.lovable.app/" target="_blank" rel="noopener noreferrer">
+                    <Info className="w-4 h-4" />
+                    <span className="hidden sm:inline">Know More</span>
+                  </a>
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </div>
