@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, ExternalLink, User } from "lucide-react";
@@ -151,6 +151,3 @@ export const ClinicCarousel = ({
     </div>
   );
 };
-
-// Add missing import
-import { useState } from "react";
