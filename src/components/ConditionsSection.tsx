@@ -23,7 +23,7 @@ export const ConditionsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
           {conditions.map((condition, index) => {
             const Icon = condition.icon;
             return (
